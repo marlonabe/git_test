@@ -3,6 +3,7 @@
     display: flex;
     justify-content: space-between;
     width: fit-content;
+    height: 100%;
 
 }
 
@@ -74,4 +75,19 @@
     justify-content: space-evenly;
     /* align-content: center; */
     text-align: center;
+}
+.yourScore{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.scoreBox{
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.number{
+    /* text-align: center; */
+    font-size: larger;
+    font-weight: bolder;
 }

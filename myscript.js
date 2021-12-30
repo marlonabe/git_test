@@ -13,6 +13,8 @@ let clicked = function(clicked_id){
     checkCardsLeft();
     cardChecker();
     buttonsChecker();
+    cardColor();
+    cardLeft();
     
 }
 
@@ -27,7 +29,26 @@ let play = function(){
     deckOfCards = shuffleArray();
     getNext2cards();
     buttonsChecker();
+    score = "0";
+    scoring(0);
+    cardColor();
+    cardLeft();
 }
+
+function cardColor(){
+    let boardCards = ["a1","b1","c1","d1","a2","b2","c2","d2","a3","b3","c3","d3","a4","b4","c4","d4"];
+    boardCards.forEach(function(item){
+        // alert(Number(document.getElementById(item).textContent));
+        if (Number(document.getElementById(item).textContent) > 0) {
+            document.getElementById(item).style.backgroundColor = "#d7c39b";
+        }
+        else{
+            document.getElementById(item).style.backgroundColor = "#d7c340";
+            
+        }
+
+});
+};
 
 function shuffleArray() {
 
@@ -39,6 +60,7 @@ function shuffleArray() {
     return cardsInDeck;
 }
 
+//------ check for buttons availabilty
 let buttonsChecker = function(){
     let buttonsArray = ["a1b1","b1c1","c1d1","a2b2","b2c2","c2d2","a3b3","b3c3","c3d3","a4b4","b4c4","c4d4"];
     let a = "";
@@ -53,11 +75,11 @@ let buttonsChecker = function(){
         if (c || d > 0) {
             document.getElementById(item).style.visibility = "hidden";
         } else {
-            document.getElementById(item).style.visibility = "visible";
-            
+            document.getElementById(item).style.visibility = "visible";  
         }
     });
 };
+//------ check for buttons availabilty
 
 
 
@@ -115,27 +137,22 @@ function cardChecker(){
         a = Number(document.getElementById(firstCard).textContent);
         b = Number(document.getElementById(secondCard).textContent);
         c = Number(document.getElementById(thridCard).textContent);
-        // alert(a+" "+b +" " +c);
         if (a && b && c > 0) {
-            // alert(item + " has values");
             straightChecker(a,b,c,item);
             sameChecker(a,b,c,item);
         }
     });
-    // alert("winning combination "+ winningCombi);
     scoringNemptying();
 };
 let winningCombi = [];
 function straightChecker(first, second, third,item){
     let a = [first,second,third];
     a = a.sort(function(x,y){return x-y});
-    // alert(a[0]);
     if (a[2]-a[1] == 1) {
         if (a[1]-a[0] == 1) {
-            // alert("We have a straight " + a)
             winningCombi.push(item);
+            scoring(3);
         }
-        
     }
 }
 function scoringNemptying(){
@@ -158,7 +175,8 @@ function sameChecker(first, second, third,item){
     if (first === second) {
         if (second === third) {
             winningCombi.push(item);
-            alert(item);
+            scoring(7);
+            //alert(item);
         }
     }
 }
@@ -169,20 +187,16 @@ function sameChecker(first, second, third,item){
 //buttons availability checker
 //check if there is available button
 //noAvailableButton. if theres no available button left, reset
+let score = "0";
 
+function scoring(points){
+    let a = Number(score) + points;
+    score = a.toString();
+    document.getElementById("score").textContent = score;
+}
 
-//loop all index object inside cardCombiArray
-/*function(first, second, third)
-    check if all three cards has a value
-        check if three cards are straight;
-        check if three cards are the same;
-    else
-        break;
-
-*/
-// let cardCombiArray = ["a1a2a3"];
 let cardCombiArray = ["a1a2a3", "a1a2b1", "a1a2b2", "a1b1b2", "a1b1c1","a2b1b2", "b1b2b3", "b1b2c1", "b1b2c2", "b1c1d1", "b2c1c2", "c1c2c3", "c1c2d1", "c1c2d2", "c2d1d2", "d1d2d3", "a2a3a4", "a2a3b2", "a2a3b3", "a2b2b3", "a2b2c2", "a3b2b3", "b2b3b4", "b2b3c2", "b2b3c3", "b2c2c3", "b2c2d2", "b3c2c3", "c2c3c4",  "c2c3d2", "c2c3d3", "c3d2d3", "d2d3d4", "a3a4b3", "a3a4b4", "a3b3b4", "a3b3c3", "a4b3b4", "b3b4c3", "b3b4c4", "b3c3d3", "b4c3c4", "c3c4d3", "c3c4d4", "c4d3d4", "a4b4c4", "b4c4d4", "b3c3c4", "c2d2d3","b1c1c2", "c3d3d4", "c1d1d2"];
-//card combinations
+
 /*a1 card a1a2a3 a1a2b1 a1a2b2 a1b1b2 a1b1c1
     b1 card a2b1b2 b1b2b3 b1b2c1 b1b2c2  b1c1d1
     c1 card b2c1c2 c1c2c3 c1c2d1 c1c2d2
@@ -200,3 +214,23 @@ let cardCombiArray = ["a1a2a3", "a1a2b1", "a1a2b2", "a1b1b2", "a1b1c1","a2b1b2",
 */
 
 
+// -----card left ------
+function cardLeft(){
+    let a = "";
+    let cardLeftArray = ["1","2","3","4","5","6","7","8","9","10"];
+    cardLeftArray.forEach(function(num){
+        a = num + "   ";
+        deckOfCards.forEach(function (item){
+            if (item == num){
+                a = a + "+";
+            }
+        });
+        document.getElementById(num).textContent = a;
+        a = "";
+
+    })
+
+}
+//-------card left-------
+
+play();

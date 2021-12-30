@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="myscript.js"></script>
+    <script src="myscript.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="head-container">
-        <div class="head-items board-container" id="board">abc
+        <div class="head-items board-container" id="board">
             <div class="first-row-items">
                 <div class="card a1" id="a1">0</div>
                 <button class="button a1b1" id="a1b1" onclick="clicked(this.id)"></button>
@@ -57,14 +57,28 @@
 
 
 
-        <div class="head-items info-container">def
+        <div class="head-items info-container">
             <div class="playButtonContainer">
-                <div><button class="playButton" onclick="play()"></button></div>
+                <div><button class="playButton" onclick="play()">play</button></div>
             </div>
             <div class = "next2cards">
-                <div class="card" id="nextCard1">1</div>
-                <div class="card" id="nextCard2">2</div>
+                <div class="card" id="nextCard1"></div>
+                <div class="card" id="nextCard2"></div>
 
+            </div>
+            <div class="scoreBoard"></div>
+                <div class="yourScore">Your Score: <span class="scoreBox" id="score">0</span></div>
+            <div class="numberContainer">
+                <div class="number" id="1">0</div>
+                <div class="number" id="2">0</div>
+                <div class="number" id="3">0</div>
+                <div class="number" id="4">0</div>
+                <div class="number" id="5">0</div>
+                <div class="number" id="6">0</div>
+                <div class="number" id="7">0</div>
+                <div class="number" id="8">0</div>
+                <div class="number" id="9">0</div>
+                <div class="number" id="10">0</div>
             </div>
         </div>
     </div>
