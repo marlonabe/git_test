@@ -40,10 +40,12 @@ function cardColor(){
     boardCards.forEach(function(item){
         // alert(Number(document.getElementById(item).textContent));
         if (Number(document.getElementById(item).textContent) > 0) {
-            document.getElementById(item).style.backgroundColor = "#d7c39b";
+            // document.getElementById(item).style.backgroundColor = "#d7c39b";
+            document.getElementById(item).classList.remove("flip");
         }
         else{
-            document.getElementById(item).style.backgroundColor = "#d7c340";
+            // document.getElementById(item).style.backgroundColor = "#d7c340";
+            document.getElementById(item).classList.add("flip");
             
         }
 
@@ -166,7 +168,8 @@ function scoringNemptying(){
         document.getElementById(firstCard).textContent = "0";
         document.getElementById(secondCard).textContent = "0";
         document.getElementById(thridCard).textContent = "0";
-        cling.play();
+        cling.currentTime = 0;
+        // cling.play();
     })
     winningCombi = [];
 }
